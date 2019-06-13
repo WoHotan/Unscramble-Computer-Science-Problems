@@ -1,0 +1,25 @@
+Task0:
+Use index to get the list element, so time complexity is O(1).
+
+Task1:
+This code use two for loops to traverse the list elements,
+m for the tests list loop, n for the calls list loop, so the time is m+n.
+Assuming m is close to n, so the time of the two loops is 2n,
+and the time of the add function of the tuple is O(1), the time of the len() function also O(1),
+total time is 2n + c.
+So, Worst Case Big-O Notation is O(n).
+
+Task2:
+The first for loop with multiple x in y statements, 
+x in y in worst case time is O(n), so worst case time is n*3n = 3n^2,
+and the time complexity of the second for loop is n.
+So, total time complexity is 3*n^2 + n + c, Worst Case Big-O Notation is O(n^2).
+
+Task3:
+This code contain two for loop and re match function and tuple add function,
+So, the time complexity is 2n + k, Worst Case Big-O Notation is O(n).
+
+Task4:
+This code contain four for loop statements,and a sorted() function and other statements,
+Assuming each for loop time complexity is n, the time complexity is 4n + nlogn + c,
+Worst Case Big-O Notation is O(n).

@@ -51,12 +51,17 @@ area_pattern = re.compile(r"\((.*?)\)")
 mobile_pattern = re.compile(r"([0-9]{4})")
 telemarketers_pattern = re.compile(r"(140)")
 count = 0
+call_from_fixed_lines = 0
+made_to_fixed_lines = 0
 for i in range(len(calls)):
   area_code = area_pattern.match(calls[i][0])
   if area_code is not None and area_code.group() == "(080)":
+    call_from_fixed_lines += 1
     area_called = area_pattern.match(calls[i][1])
     if area_called:
       list_of_codes.add(area_called.group())
+      if area_called.group() == "(080)":
+        made_to_fixed_lines += 1
     mobile_called = mobile_pattern.match(calls[i][1])
     if mobile_called:
       list_of_codes.add(mobile_called.group())
@@ -70,9 +75,5 @@ for code in list_of_codes:
   print(code, '\n')
 
 #Part B:
-count = 0
-for code in list_of_codes:
-  if code == "(080)":
-    count += 1
-percent_of_calls = count / len(list_of_codes) * 100
+percent_of_calls = made_to_fixed_lines / call_from_fixed_lines * 100
 print("%2.3f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore." % percent_of_calls)
