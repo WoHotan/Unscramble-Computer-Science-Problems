@@ -65,6 +65,7 @@ for i in range(len(calls)):
       list_of_codes.add(telemarketers_called.group())
 
 print("The numbers called by people in Bangalore have codes:\n")
+list_of_codes = sorted(list_of_codes)
 for code in list_of_codes:
   print(code, '\n')
 

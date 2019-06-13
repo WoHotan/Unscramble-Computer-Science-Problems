@@ -24,4 +24,21 @@ Print a message:
 <list of numbers>
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
+numbers = {}
+for num in texts:
+    numbers[num[0]] = True
+    numbers[num[1]] = True
+for num in calls:
+    numbers[num[0]] = False
+    numbers[num[1]] = True
+
+telemarketers_numbers = []
+print("These numbers could be telemarketers: \n")
+for k, v in numbers.items():
+    if not v:
+        telemarketers_numbers.append(k)
+telemarketers_numbers = sorted(telemarketers_numbers)
+for number in telemarketers_numbers:
+    print(number)
+
 
