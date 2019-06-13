@@ -3,6 +3,7 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files.
 """
 import csv
+import re
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -43,3 +44,34 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+#Part A:
+list_of_codes = set()
+area_pattern = re.compile(r"\((.*?)\)")
+mobile_pattern = re.compile(r"([0-9]{4})")
+telemarketers_pattern = re.compile(r"(140)")
+count = 0
+for i in range(len(calls)):
+  area_code = area_pattern.match(calls[i][0])
+  if area_code is not None and area_code.group() == "(080)":
+    area_called = area_pattern.match(calls[i][1])
+    if area_called:
+      list_of_codes.add(area_called.group())
+    mobile_called = mobile_pattern.match(calls[i][1])
+    if mobile_called:
+      list_of_codes.add(mobile_called.group())
+    telemarketers_called = telemarketers_pattern.match(calls[i][1])
+    if telemarketers_called:
+      list_of_codes.add(telemarketers_called.group())
+
+print("The numbers called by people in Bangalore have codes:\n")
+for code in list_of_codes:
+  print(code, '\n')
+
+#Part B:
+count = 0
+for code in list_of_codes:
+  if code == "(080)":
+    count += 1
+percent_of_calls = count / len(list_of_codes) * 100
+print("%2.3f percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore." % percent_of_calls)
